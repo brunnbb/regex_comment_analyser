@@ -10,14 +10,8 @@ class Analisador:
                                                                r')\b')
     
     def simplificar_comentarios(self, comentarios: list[str]):
-        comentarios_processados = []
+        return [" ".join(self.padrao_palavra.findall(comentario.lower())) for comentario in comentarios]
 
-        for comentario in comentarios:
-            palavras_filtradas = self.padrao_palavra.findall(comentario.lower())
-            comentarios_processados.append(" ".join(palavras_filtradas))
-
-        return comentarios_processados
-        
     def analisar_comentario(self, comentario: str):
         palavras_encontradas = self.padrao_adv_adj.findall(comentario.lower())
 
@@ -60,11 +54,7 @@ class Analisador:
 
     def analisar_paginas(self, comentarios: list[str]):
         comentarios_simplificados = self.simplificar_comentarios(comentarios)
-        resultados = []
-        for comentario in comentarios_simplificados:
-            resultado = self.analisar_comentario(comentario)
-            resultados.append(resultado)
-        return resultados
+        return [self.analisar_comentario(comentario) for comentario in comentarios_simplificados]
     
     def gerar_estatisticas(self, resultados):
         total = len(resultados)
