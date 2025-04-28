@@ -19,7 +19,6 @@ def main():
     print("\nPrograma executado com sucesso.")
     print(f"Consulte os arquivos '{filme}_comentarios.txt', '{filme}_comentarios_classificados.txt e '{filme}_sinopse.txt' na pasta arquivos.")
     
-
 if __name__ == "__main__":
     main()
     
